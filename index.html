@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Paputerra 2.0</title>
 <style>
-@import url('<https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'>);
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 body {font-family:Arial;background:#0b0e17;color:#fff;text-align:center;padding:30px;}
 .logo {font-family:'Press Start 2P', cursive;font-size:42px;color:#00ffaa;text-shadow:4px 4px 0 #003300,-4px -4px 0 #003300;margin:20px 0;}
 .server {background:#1a1f2e;margin:20px auto;padding:20px;border-radius:12px;max-width:420px;}
@@ -22,27 +22,25 @@ button:hover {background:#00cc88;}
 <h2>Servidor 1</h2>
 <p>IP: poloforge2.terrariaforge.com:11150</p>
 <button onclick="copyIP('poloforge2.terrariaforge.com:11150')" class="copy-btn">📋 Copiar IP</button>
-<button onclick="window.open('<https://www.terrariaforge.com/servers','_blank')">🚀> Iniciar Servidor 1</button>
+<button onclick="window.open('https://www.terrariaforge.com/servers','_blank')">🚀> Iniciar Servidor 1</button>
 </div>
 
 <div class="server">
 <h2>Servidor 2</h2>
 <p>IP: 51.77.85.56:50830</p>
 <button onclick="copyIP('51.77.85.56:50830')" class="copy-btn">📋 Copiar IP</button>
-<button onclick="window.open('<https://panel.searcade.com/servers','_blank')">🚀> Iniciar Servidor 2</button>
+<button onclick="window.open('https://panel.searcade.com/servers','_blank')">🚀> Iniciar Servidor 2</button>
 </div>
 
 <div class="server">
 <h2>Servidor 3</h2>
 <p>IP: 51.77.85.56:50835</p>
 <button onclick="copyIP('51.77.85.56:50835')" class="copy-btn">📋 Copiar IP</button>
-<button onclick="window.open('<https://panel.searcade.com/servers','_blank')">🚀> Iniciar Servidor 3</button>
+<button onclick="window.open('https://panel.searcade.com/servers','_blank')">🚀> Iniciar Servidor 3</button>
 </div>
 
 <script>
-function copyIP(ip) {
-    navigator.clipboard.writeText(ip).then(() => alert('✅ IP copiada: ' + ip));
-}
+function copyIP(ip) { navigator.clipboard.writeText(ip).then(() => alert('✅ IP copiada: ' + ip)); }
 </script>
 </body>
 </html>
