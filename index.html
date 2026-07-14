@@ -2,45 +2,138 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paputerra 2.0</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-body {font-family:Arial;background:#0b0e17;color:#fff;text-align:center;padding:20px;}
-.logo {display:block;margin:20px auto;max-width:420px;width:85%;border:4px solid #5c4033;border-radius:8px;}
-.server {background:#1a1f2e;margin:20px auto;padding:20px;border-radius:12px;max-width:420px;}
-button {background:#00ffaa;color:#000;padding:14px 30px;border:none;border-radius:8px;cursor:pointer;font-weight:bold;font-size:16px;margin:5px;}
-button:hover {background:#00cc88;}
-.copy-btn {background:#ffaa00;}
-.copy-btn:hover {background:#cc8800;}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Press Start 2P', Arial;
+    background: #0b0e17;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Logo */
+.logo {
+    display: block;
+    margin: 15px auto 20px auto;
+    width: 90%;
+    max-width: 340px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 15px #00ff41);
+    animation: glowPulse 2s infinite alternate;
+}
+
+/* Animación Boss */
+.boss-fight {
+    margin: 25px auto;
+    max-width: 380px;
+}
+
+.boss-fight img {
+    width: 100%;
+    border: 3px solid #ff0000;
+    border-radius: 8px;
+    image-rendering: pixelated;
+    animation: bossShake 0.7s infinite;
+}
+
+/* Servidores */
+.server {
+    background: #1a1f2e;
+    margin: 18px auto;
+    padding: 18px;
+    border-radius: 12px;
+    max-width: 400px;
+    border: 2px solid #00ff41;
+    transition: transform 0.3s;
+}
+
+.server:hover {
+    transform: scale(1.03);
+}
+
+/* Botones */
+button {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Press Start 2P', Arial;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.copy-btn {
+    background: #ffaa00;
+    color: #000;
+}
+
+.start-btn {
+    background: #00ff88;
+    color: #000;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Animaciones */
+@keyframes glowPulse {
+    from { filter: drop-shadow(0 0 8px #00ff41); }
+    to { filter: drop-shadow(0 0 25px #00ff41); }
+}
+
+@keyframes bossShake {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
 </style>
 </head>
 <body>
-<img src="https://files.catbox.moe/8y3f1k.png" class="logo" alt="PAPUTERRA 2.0">
-<h1>🐱 Servidores Terraria</h1>
 
-<div class="server">
-<h2>Servidor 1</h2>
-<p>IP: poloforge2.terrariaforge.com:11150</p>
-<button onclick="copyIP('poloforge2.terrariaforge.com:11150')" class="copy-btn">📋 Copiar IP</button>
-<button onclick="window.open('https://www.terrariaforge.com/servers','_blank')">🚀> Iniciar Servidor 1</button>
+<img src="https://files.catbox.moe/9v2k8p.png" class="logo" alt="PAPUTERRA 2.0">
+
+<h1 style="color:#00ff41; margin:10px 0 20px 0;">🐱 Servidores Terraria</h1>
+
+<!-- Animación -->
+<div class="boss-fight">
+    <img src="https://files.catbox.moe/0k9p2m.gif" alt="Mago vs Los Gemelos">
 </div>
 
 <div class="server">
-<h2>Servidor 2</h2>
-<p>IP: 51.77.85.56:50830</p>
-<button onclick="copyIP('51.77.85.56:50830')" class="copy-btn">📋 Copiar IP</button>
-<button onclick="window.open('https://panel.searcade.com/servers','_blank')">🚀> Iniciar Servidor 2</button>
+    <h2>Servidor 1</h2>
+    <p>IP: poloforge2.terrariaforge.com:11150</p>
+    <button onclick="copyIP('poloforge2.terrariaforge.com:11150')" class="copy-btn">📋 Copiar IP</button>
+    <button onclick="window.open('https://www.terrariaforge.com/servers','_blank')" class="start-btn">🚀 Iniciar Servidor 1</button>
 </div>
 
 <div class="server">
-<h2>Servidor 3</h2>
-<p>IP: 51.77.85.56:50835</p>
-<button onclick="copyIP('51.77.85.56:50835')" class="copy-btn">📋 Copiar IP</button>
-<button onclick="window.open('https://panel.searcade.com/servers','_blank')">🚀> Iniciar Servidor 3</button>
+    <h2>Servidor 2</h2>
+    <p>IP: 51.77.85.56:50830</p>
+    <button onclick="copyIP('51.77.85.56:50830')" class="copy-btn">📋 Copiar IP</button>
+    <button onclick="window.open('https://panel.searcade.com/servers','_blank')" class="start-btn">🚀 Iniciar Servidor 2</button>
+</div>
+
+<div class="server">
+    <h2>Servidor 3</h2>
+    <p>IP: 51.77.85.56:50835</p>
+    <button onclick="copyIP('51.77.85.56:50835')" class="copy-btn">📋 Copiar IP</button>
+    <button onclick="window.open('https://panel.searcade.com/servers','_blank')" class="start-btn">🚀 Iniciar Servidor 3</button>
 </div>
 
 <script>
-function copyIP(ip) { navigator.clipboard.writeText(ip).then(() => alert('✅ IP copiada: ' + ip)); }
+function copyIP(ip) { 
+    navigator.clipboard.writeText(ip).then(() => alert('✅ IP copiada!')); 
+}
 </script>
+
 </body>
-</html>
+      </html>
