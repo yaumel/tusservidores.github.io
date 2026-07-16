@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paputerra 2.0</title>
+
+<!-- === CONFIGURACIÓN PWA === -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#00ff41">
+<link rel="apple-touch-icon" href="icon-192.png">
+<!-- ============================= -->
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -18,25 +25,79 @@ body {
 }
 
 header { position: relative; margin-bottom: 20px; }
-.hamburger { position: absolute; top: 15px; right: 15px; font-size: 2.2rem; cursor: pointer; color: #00ff41; }
+.hamburger { position: absolute; top: 15px; right: 15px; font-size: 2.2rem; cursor: pointer; color: #00ff41; z-index: 200; }
 
 .tree { font-size: 3.8rem; margin-bottom: 8px; animation: sway 4s infinite ease-in-out; }
 .neon-title { font-size: 2.3rem; color: #00ff41; text-shadow: 0 0 10px #00ff41, 0 0 25px #00ff41; margin: 5px 0 15px 0; }
 .subtitle { font-size: 1.15rem; color: #00ff99; text-shadow: 0 0 12px #00ff99; margin: 5px 0 30px 0; }
 
-.server { background: #1a1f2e; margin: 22px auto; padding: 22px; border-radius: 10px; max-width: 420px; border: 3px solid #00ff41; box-shadow: 0 0 15px rgba(0, 255, 65, 0.5); }
+.ip-main { font-size: 0.95rem; word-break: break-all; background: #111827; padding: 10px; border-radius: 6px; margin: 8px 0; font-family: monospace; }
+.ip-extra { font-size: 0.9rem; background: #1a2238; padding: 8px; border-radius: 6px; margin: 4px 0; font-family: monospace; color: #00ffcc; }
 
-.ip { font-size: 0.9rem; word-break: break-all; background: #111827; padding: 12px; border-radius: 6px; margin: 12px 0; font-family: monospace; overflow-wrap: anywhere; }
+.server {
+    background: #1a1f2e;
+    margin: 22px auto;
+    padding: 22px;
+    border-radius: 10px;
+    max-width: 420px;
+    border: 3px solid #00ff41;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+}
 
-.monitor { background: #1a1f2e; margin: 15px auto; padding: 18px; border-radius: 10px; max-width: 420px; border: 2px solid #00ffff; }
+button {
+    width: 100%;
+    max-width: 380px;
+    padding: 14px;
+    margin: 8px auto;
+    display: block;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Press Start 2P', Arial;
+}
 
-.status { margin: 12px 0; font-size: 1.05rem; line-height: 1.4; }
-button { width: 100%; max-width: 380px; padding: 12px; margin: 6px auto; display: block; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: 'Press Start 2P', Arial; }
 .copy-btn { background: #ffaa00; color: #000; }
 .start-btn { background: #00ffaa; color: #000; }
-.panel-btn { background: #00ccff; color: #000; font-size: 15px; }
+.panel-btn { background: #00ccff; color: #000; }
 
-.modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 200; max-width: 90%; width: 420px; background: #111827; padding: 25px; border: 3px solid #00ff41; }
+.trophy { font-size: 3rem; margin: 30px auto 10px; animation: float 3s infinite ease-in-out; }
+
+.creadores {
+    background: #1a1f2e;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 420px;
+    margin: 40px auto 20px;
+    border: 2px solid #ffd700;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 280px;
+    height: 100%;
+    background: #111827;
+    border-right: 4px solid #00ff41;
+    transition: left 0.4s ease;
+    padding: 20px;
+    z-index: 300;
+}
+
+.side-menu.open { left: 0; }
+
+footer {
+    margin-top: 60px;
+    padding: 25px;
+    color: #555;
+    font-size: 0.75rem;
+    border-top: 1px solid #222;
+}
+
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes sway { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
 </style>
 </head>
 <body>
@@ -48,66 +109,73 @@ button { width: 100%; max-width: 380px; padding: 12px; margin: 6px auto; display
     <div class="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
-<!-- Menú -->
-<div id="menuModal" class="modal">
-    <h2>Menu Paputerra</h2>
-    <button onclick="window.open('https://www.terrariaforge.com/servers','_blank')" class="menu-item">🎮 Abrir Panel TerrariaForge</button>
-    <div style="margin:25px 0 15px 0; text-align:left;">
+<!-- Menú Lateral -->
+<div id="sideMenu" class="side-menu">
+    <h2 style="color:#00ff41;">Menu Paputerra</h2>
+    <button onclick="window.open('https://www.terrariaforge.com/servers','_blank'); toggleMenu()" class="panel-btn">🎮 Panel TerrariaForge</button>
+    <div style="margin:30px 0 20px 0; text-align:left;">
         <h3>🌐 Redes</h3>
-        <button onclick="window.open('https://chat.whatsapp.com/KJIhQM2wGN90c4TMeSo1oW?s=cl&p=a&ilr=4', '_blank')" class="menu-item">📱 WhatsApp</button>
-        <button onclick="window.open('https://discord.gg/FXF69JTvk', '_blank')" class="menu-item">💬 Discord</button>
-        <button onclick="window.location.href='mailto:yailenis.900416@gmail.com'" class="menu-item">✉️ Gmail</button>
+        <button onclick="window.open('https://chat.whatsapp.com/KJIhQM2wGN90c4TMeSo1oW?s=cl&p=a&ilr=4', '_blank'); toggleMenu()" class="panel-btn">📱 WhatsApp</button>
+        <button onclick="window.open('https://discord.gg/FXF69JTvk', '_blank'); toggleMenu()" class="panel-btn">💬 Discord</button>
+        <button onclick="window.location.href='mailto:yailenis.900416@gmail.com'; toggleMenu()" class="panel-btn">✉️ Gmail</button>
     </div>
-    <button onclick="toggleMenu()" style="background:#ff4444;">Cerrar</button>
+    <button onclick="toggleMenu()" style="background:#ff4444; margin-top:20px;">Cerrar Menú</button>
 </div>
 
 <!-- Servidor 1 -->
 <div class="server">
     <h2>Servidor 1</h2>
-    <div class="ip">poloforge2.terrariaforge.com:11150</div>
+    <div class="ip-main">poloforge2.terrariaforge</div>
+    <div class="ip-extra">.com:11150</div>
     <button onclick="copyIP('poloforge2.terrariaforge.com:11150')" class="copy-btn">📋 Copiar IP</button>
-    <button onclick="window.open('https://www.terrariaforge.com/servers','_blank')" class="panel-btn">🌐 Ver Estado en Panel</button>
-    
-    <div class="monitor">
-        <h3>📡 Estado del Servidor</h3>
-        <p class="status" id="status1">Abre el panel de TerrariaForge para ver si está <strong>"Activo"</strong></p>
-        <small style="color:#aaa;">El estado "Activo" solo se ve en el panel oficial</small>
-    </div>
+    <button onclick="window.open('https://www.terrariaforge.com/servers','_blank')" class="start-btn">🚀 Panel TerrariaForge</button>
 </div>
 
-<!-- Servidor 2 y 3 (igual) -->
+<!-- Servidor 2 -->
 <div class="server">
     <h2>Servidor 2</h2>
     <div class="ip">51.77.85.56:50830</div>
     <button onclick="copyIP('51.77.85.56:50830')" class="copy-btn">📋 Copiar IP</button>
-    <button onclick="window.open('https://panel.searcade.com','_blank')" class="panel-btn">🌐 Ver Panel</button>
-    <div class="monitor">
-        <h3>📡 Estado del Servidor</h3>
-        <p class="status" id="status2">Abre el panel para ver el estado</p>
-    </div>
+    <button onclick="window.open('https://panel.searcade.com','_blank')" class="start-btn">🚀 Panel Servidor 2</button>
 </div>
 
+<!-- Servidor 3 -->
 <div class="server">
     <h2>Servidor 3</h2>
     <div class="ip">51.77.85.56:50835</div>
     <button onclick="copyIP('51.77.85.56:50835')" class="copy-btn">📋 Copiar IP</button>
-    <button onclick="window.open('https://panel.searcade.com','_blank')" class="panel-btn">🌐 Ver Panel</button>
-    <div class="monitor">
-        <h3>📡 Estado del Servidor</h3>
-        <p class="status" id="status3">Abre el panel para ver el estado</p>
-    </div>
+    <button onclick="window.open('https://panel.searcade.com','_blank')" class="start-btn">🚀 Panel Servidor 3</button>
 </div>
+
+<!-- Trofeo Creadores -->
+<div class="creadores">
+    <div class="trophy">🏆</div>
+    <h3 style="color:#ffd700; margin:10px 0;">CREADORES</h3>
+    <p style="color:#fff; font-size:1rem;">Yaumel - Erick</p>
+</div>
+
+<footer>
+    <p>Paputerra 2.0 © 2026 • Hecho con ❤️ para la comunidad</p>
+</footer>
 
 <script>
 function copyIP(ip) { 
-    navigator.clipboard.writeText(ip).then(() => alert('✅ IP copiada!')); 
+    navigator.clipboard.writeText(ip)
+        .then(() => alert('✅ IP copiada correctamente:\n' + ip))
+        .catch(() => alert('❌ No se pudo copiar.'));
 }
 
 function toggleMenu() {
-    const menu = document.getElementById("menuModal");
-    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    document.getElementById("sideMenu").classList.toggle("open");
+}
+
+// === Registro del Service Worker para PWA ===
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('PWA Service Worker registrado'))
+        .catch(err => console.log('Error al registrar SW:', err));
 }
 </script>
 
 </body>
-</html>
+        </html>
