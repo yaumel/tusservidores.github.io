@@ -18,100 +18,25 @@ body {
 }
 
 header { position: relative; margin-bottom: 20px; }
-.hamburger {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 2.2rem;
-    cursor: pointer;
-    z-index: 100;
-    color: #00ff41;
-}
+.hamburger { position: absolute; top: 15px; right: 15px; font-size: 2.2rem; cursor: pointer; color: #00ff41; }
 
 .tree { font-size: 3.8rem; margin-bottom: 8px; animation: sway 4s infinite ease-in-out; }
 .neon-title { font-size: 2.3rem; color: #00ff41; text-shadow: 0 0 10px #00ff41, 0 0 25px #00ff41; margin: 5px 0 15px 0; }
 .subtitle { font-size: 1.15rem; color: #00ff99; text-shadow: 0 0 12px #00ff99; margin: 5px 0 30px 0; }
 
-.server, .modal {
-    background: #1a1f2e;
-    margin: 22px auto;
-    padding: 22px;
-    border-radius: 10px;
-    max-width: 420px;
-    border: 3px solid #00ff41;
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
-}
+.server { background: #1a1f2e; margin: 22px auto; padding: 22px; border-radius: 10px; max-width: 420px; border: 3px solid #00ff41; box-shadow: 0 0 15px rgba(0, 255, 65, 0.5); }
 
-.ip {
-    font-size: 0.9rem;
-    word-break: break-all;
-    background: #111827;
-    padding: 12px;
-    border-radius: 6px;
-    margin: 12px 0;
-    font-family: monospace;
-    overflow-wrap: anywhere;
-}
+.ip { font-size: 0.9rem; word-break: break-all; background: #111827; padding: 12px; border-radius: 6px; margin: 12px 0; font-family: monospace; overflow-wrap: anywhere; }
 
-.monitor {
-    background: #1a1f2e;
-    margin: 15px auto;
-    padding: 18px;
-    border-radius: 10px;
-    max-width: 420px;
-    border: 2px solid #00ffff;
-}
+.monitor { background: #1a1f2e; margin: 15px auto; padding: 18px; border-radius: 10px; max-width: 420px; border: 2px solid #00ffff; }
 
-.status { margin: 8px 0; }
-.online { color: #00ff41; }
-.offline { color: #ff4444; }
-
-button {
-    width: 100%;
-    max-width: 380px;
-    padding: 12px;
-    margin: 6px auto;
-    display: block;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    font-family: 'Press Start 2P', Arial;
-}
-
+.status { margin: 12px 0; font-size: 1.05rem; line-height: 1.4; }
+button { width: 100%; max-width: 380px; padding: 12px; margin: 6px auto; display: block; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; font-family: 'Press Start 2P', Arial; }
 .copy-btn { background: #ffaa00; color: #000; }
 .start-btn { background: #00ffaa; color: #000; }
-.refresh-btn { background: #00aaff; color: #fff; }
-.menu-item { background: #00aaff; color: #fff; margin: 8px 0; }
+.panel-btn { background: #00ccff; color: #000; font-size: 15px; }
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 200;
-    max-width: 90%;
-    width: 420px;
-    background: #111827;
-    padding: 25px;
-    border: 3px solid #00ff41;
-}
-
-#consoleOutput {
-    background: #000;
-    color: #0f0;
-    text-align: left;
-    height: 220px;
-    overflow-y: auto;
-    padding: 12px;
-    font-family: monospace;
-    font-size: 0.85rem;
-    white-space: pre-wrap;
-    border: 1px solid #00ff41;
-    margin-top: 10px;
-}
+.modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 200; max-width: 90%; width: 420px; background: #111827; padding: 25px; border: 3px solid #00ff41; }
 </style>
 </head>
 <body>
@@ -123,51 +48,42 @@ button {
     <div class="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
-<!-- Menú Hamburguesa -->
+<!-- Menú -->
 <div id="menuModal" class="modal">
     <h2>Menu Paputerra</h2>
-    
-    <button onclick="showConsole()" class="menu-item">🖥️ Consola Servidor 1</button>
-    
+    <button onclick="window.open('https://www.terrariaforge.com/servers','_blank')" class="menu-item">🎮 Abrir Panel TerrariaForge</button>
     <div style="margin:25px 0 15px 0; text-align:left;">
-        <h3>🌐 Redes Sociales</h3>
+        <h3>🌐 Redes</h3>
         <button onclick="window.open('https://chat.whatsapp.com/KJIhQM2wGN90c4TMeSo1oW?s=cl&p=a&ilr=4', '_blank')" class="menu-item">📱 WhatsApp</button>
         <button onclick="window.open('https://discord.gg/FXF69JTvk', '_blank')" class="menu-item">💬 Discord</button>
         <button onclick="window.location.href='mailto:yailenis.900416@gmail.com'" class="menu-item">✉️ Gmail</button>
     </div>
-    
-    <button onclick="toggleMenu()" style="background:#ff4444;">Cerrar Menú</button>
+    <button onclick="toggleMenu()" style="background:#ff4444;">Cerrar</button>
 </div>
 
-<!-- Servidores -->
+<!-- Servidor 1 -->
 <div class="server">
     <h2>Servidor 1</h2>
     <div class="ip">poloforge2.terrariaforge.com:11150</div>
     <button onclick="copyIP('poloforge2.terrariaforge.com:11150')" class="copy-btn">📋 Copiar IP</button>
-    <button onclick="window.open('https://www.terrariaforge.com/servers','_blank')" class="start-btn">🚀 Panel Servidor 1</button>
+    <button onclick="window.open('https://www.terrariaforge.com/servers','_blank')" class="panel-btn">🌐 Ver Estado en Panel</button>
     
     <div class="monitor">
-        <h3>📡 Monitor En Vivo</h3>
-        <button onclick="refreshServer(1)" class="refresh-btn">🔄 Actualizar</button>
-        <div class="status" id="status1">Cargando...</div>
-        <div class="status">👥 Jugadores: <strong id="players1">0</strong></div>
-        <ul id="list1" style="text-align:left; max-height:110px; overflow-y:auto; padding-left:15px;"></ul>
-        <div class="status" id="world1">🌍 Mundo: --- </div>
+        <h3>📡 Estado del Servidor</h3>
+        <p class="status" id="status1">Abre el panel de TerrariaForge para ver si está <strong>"Activo"</strong></p>
+        <small style="color:#aaa;">El estado "Activo" solo se ve en el panel oficial</small>
     </div>
 </div>
 
+<!-- Servidor 2 y 3 (igual) -->
 <div class="server">
     <h2>Servidor 2</h2>
     <div class="ip">51.77.85.56:50830</div>
     <button onclick="copyIP('51.77.85.56:50830')" class="copy-btn">📋 Copiar IP</button>
-    <button onclick="window.open('https://panel.searcade.com','_blank')" class="start-btn">🚀 Panel Servidor 2</button>
+    <button onclick="window.open('https://panel.searcade.com','_blank')" class="panel-btn">🌐 Ver Panel</button>
     <div class="monitor">
-        <h3>📡 Monitor En Vivo</h3>
-        <button onclick="refreshServer(2)" class="refresh-btn">🔄 Actualizar</button>
-        <div class="status" id="status2">Cargando...</div>
-        <div class="status">👥 Jugadores: <strong id="players2">0</strong></div>
-        <ul id="list2" style="text-align:left; max-height:110px; overflow-y:auto; padding-left:15px;"></ul>
-        <div class="status" id="world2">🌍 Mundo: --- </div>
+        <h3>📡 Estado del Servidor</h3>
+        <p class="status" id="status2">Abre el panel para ver el estado</p>
     </div>
 </div>
 
@@ -175,122 +91,23 @@ button {
     <h2>Servidor 3</h2>
     <div class="ip">51.77.85.56:50835</div>
     <button onclick="copyIP('51.77.85.56:50835')" class="copy-btn">📋 Copiar IP</button>
-    <button onclick="window.open('https://panel.searcade.com','_blank')" class="start-btn">🚀 Panel Servidor 3</button>
+    <button onclick="window.open('https://panel.searcade.com','_blank')" class="panel-btn">🌐 Ver Panel</button>
     <div class="monitor">
-        <h3>📡 Monitor En Vivo</h3>
-        <button onclick="refreshServer(3)" class="refresh-btn">🔄 Actualizar</button>
-        <div class="status" id="status3">Cargando...</div>
-        <div class="status">👥 Jugadores: <strong id="players3">0</strong></div>
-        <ul id="list3" style="text-align:left; max-height:110px; overflow-y:auto; padding-left:15px;"></ul>
-        <div class="status" id="world3">🌍 Mundo: --- </div>
+        <h3>📡 Estado del Servidor</h3>
+        <p class="status" id="status3">Abre el panel para ver el estado</p>
     </div>
 </div>
 
-<!-- Modal Consola -->
-<div id="consoleModal" class="modal">
-    <h2>🖥️ Consola Servidor 1</h2>
-    <input type="text" id="commandInput" placeholder="Escribe comando aquí..." style="width:100%; padding:12px; margin:10px 0; background:#111; color:#0f0; border:1px solid #00ff41;">
-    <button onclick="sendCommand()" style="background:#ff00aa; color:#fff;">Enviar Comando</button>
-    <div id="consoleOutput">Consola lista...</div>
-    <button onclick="hideConsole()" style="background:#ff4444; margin-top:15px;">Cerrar Consola</button>
-</div>
-
 <script>
-// ==================== CONFIGURA ====================
-const servers = {
-    1: { base: "http://TU_IP:7878", token: "TOKEN_1" },
-    2: { base: "http://51.77.85.56:7878", token: "TOKEN_2" },
-    3: { base: "http://51.77.85.56:7878", token: "TOKEN_3" }
-};
-// =================================================
-
 function copyIP(ip) { 
     navigator.clipboard.writeText(ip).then(() => alert('✅ IP copiada!')); 
 }
 
 function toggleMenu() {
     const menu = document.getElementById("menuModal");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
 }
-
-function showConsole() {
-    toggleMenu();
-    document.getElementById("consoleModal").style.display = "block";
-}
-
-function hideConsole() {
-    document.getElementById("consoleModal").style.display = "none";
-}
-
-async function apiCall(base, token, endpoint) {
-    try {
-        const res = await fetch(`\( {base} \){endpoint}`, { headers: { "token": token } });
-        return res.ok ? await res.json() : null;
-    } catch { return null; }
-}
-
-async function refreshServer(num) {
-    const s = servers[num];
-    const els = {
-        status: document.getElementById(`status${num}`),
-        players: document.getElementById(`players${num}`),
-        list: document.getElementById(`list${num}`),
-        world: document.getElementById(`world${num}`)
-    };
-
-    els.status.textContent = "🔄 Consultando...";
-    const statusData = await apiCall(s.base, s.token, "/v2/server/status");
-    
-    if (!statusData) {
-        els.status.innerHTML = '<span class="offline">❌ OFFLINE</span>';
-        return;
-    }
-
-    els.status.innerHTML = '<span class="online">✅ ONLINE</span>';
-    els.world.textContent = `🌍 Mundo: ${statusData.worldname || 'Desconocido'}`;
-
-    const playersData = await apiCall(s.base, s.token, "/v2/players/active");
-    if (playersData && playersData.players) {
-        els.players.textContent = playersData.players.length;
-        els.list.innerHTML = "";
-        playersData.players.forEach(p => {
-            const li = document.createElement("li");
-            li.textContent = `• ${p.name}`;
-            els.list.appendChild(li);
-        });
-    } else {
-        els.players.textContent = "0";
-        els.list.innerHTML = "<li style='color:#666'>Sin jugadores</li>";
-    }
-}
-
-async function sendCommand() {
-    const input = document.getElementById("commandInput");
-    const output = document.getElementById("consoleOutput");
-    const cmd = input.value.trim();
-    if (!cmd) return;
-
-    output.innerHTML += `<br>> ${cmd}`;
-    input.value = "";
-
-    const s = servers[1];
-    try {
-        const res = await fetch(`${s.base}/v2/server/command`, {
-            method: 'POST',
-            headers: { "token": s.token, "Content-Type": "application/json" },
-            body: JSON.stringify({ command: cmd })
-        });
-        output.innerHTML += res.ok ? "<br><span style='color:#0f0'>✓ Enviado</span>" : "<br><span style='color:#f66'>Error</span>";
-    } catch {
-        output.innerHTML += "<br><span style='color:#f66'>Error de conexión</span>";
-    }
-    output.scrollTop = output.scrollHeight;
-}
-
-// Auto refresh
-setInterval(() => { refreshServer(1); refreshServer(2); refreshServer(3); }, 12000);
-window.onload = () => { refreshServer(1); refreshServer(2); refreshServer(3); };
 </script>
 
 </body>
-            </html>
+</html>
