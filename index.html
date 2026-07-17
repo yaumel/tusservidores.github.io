@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paputerra 2.0</title>
+<title>Papuserver 2.0</title>
 
-<!-- === CONFIGURACIÓN PWA === -->
+<!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#00ff41">
 <link rel="apple-touch-icon" href="icon-192.png">
-<!-- ============================= -->
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -61,6 +60,7 @@ button {
 .copy-btn { background: #ffaa00; color: #000; }
 .start-btn { background: #00ffaa; color: #000; }
 .panel-btn { background: #00ccff; color: #000; }
+.share-btn { background: #00ff88; color: #000; }
 
 .trophy { font-size: 3rem; margin: 30px auto 10px; animation: float 3s infinite ease-in-out; }
 
@@ -104,14 +104,14 @@ footer {
 
 <header>
     <div class="tree">🌳</div>
-    <h1 class="neon-title">PAPUTERRA<br>2.0</h1>
-    <h2 class="subtitle">🐱 SERVIDORES TERRARIA</h2>
+    <h1 class="neon-title">PAPUSERVER<br>2.0</h1>
+    <h2 class="subtitle">🐱 SERVIDORES TERRARIA & MINECRAFT</h2>
     <div class="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
 <!-- Menú Lateral -->
 <div id="sideMenu" class="side-menu">
-    <h2 style="color:#00ff41;">Menu Paputerra</h2>
+    <h2 style="color:#00ff41;">Menu Papuserver</h2>
     <button onclick="window.open('https://www.terrariaforge.com/servers','_blank'); toggleMenu()" class="panel-btn">🎮 Panel TerrariaForge</button>
     <div style="margin:30px 0 20px 0; text-align:left;">
         <h3>🌐 Redes</h3>
@@ -122,30 +122,32 @@ footer {
     <button onclick="toggleMenu()" style="background:#ff4444; margin-top:20px;">Cerrar Menú</button>
 </div>
 
-<!-- Servidor 1 -->
+<!-- Servidor 1 - Paputerra -->
 <div class="server">
-    <h2>Servidor 1</h2>
+    <h2>Servidor 1 - Paputerra 2.0</h2>
     <div class="ip-main">poloforge2.terrariaforge</div>
     <div class="ip-extra">.com:11150</div>
     <button onclick="copyIP('poloforge2.terrariaforge.com:11150')" class="copy-btn">📋 Copiar IP</button>
     <button onclick="window.open('https://www.terrariaforge.com/servers','_blank')" class="start-btn">🚀 Panel TerrariaForge</button>
 </div>
 
-<!-- Servidor 2 -->
+<!-- Servidor 2 - Papucraft -->
 <div class="server">
-    <h2>Servidor 2</h2>
-    <div class="ip">51.77.85.56:50830</div>
-    <button onclick="copyIP('51.77.85.56:50830')" class="copy-btn">📋 Copiar IP</button>
-    <button onclick="window.open('https://panel.searcade.com','_blank')" class="start-btn">🚀 Panel Servidor 2</button>
+    <h2>Servidor 2 - Papucraft 2.0</h2>
+    <div class="ip-main">yaumel_1111.aternos.me</div>
+    <div class="ip-extra">Puerto: 59824</div>
+    <button onclick="copyIP('yaumel_1111.aternos.me:59824')" class="copy-btn">📋 Copiar IP</button>
+    <button onclick="window.open('https://add.aternos.org/yaumel_1111','_blank')" class="start-btn">🚀 Iniciar Servidor Aternos</button>
 </div>
 
-<!-- Servidor 3 -->
+<!-- Servidor 3 - Pendiente -->
 <div class="server">
-    <h2>Servidor 3</h2>
-    <div class="ip">51.77.85.56:50835</div>
-    <button onclick="copyIP('51.77.85.56:50835')" class="copy-btn">📋 Copiar IP</button>
-    <button onclick="window.open('https://panel.searcade.com','_blank')" class="start-btn">🚀 Panel Servidor 3</button>
+    <h2>Servidor 3 - Pendiente</h2>
+    <p style="color:#666; margin:20px 0; font-size:1.1rem;">Próximamente...</p>
 </div>
+
+<!-- Botón Compartir -->
+<button onclick="sharePage()" class="share-btn">🔗 Compartir Página Web</button>
 
 <!-- Trofeo Creadores -->
 <div class="creadores">
@@ -155,7 +157,7 @@ footer {
 </div>
 
 <footer>
-    <p>Paputerra 2.0 © 2026 • Hecho con ❤️ para la comunidad</p>
+    <p>Papuserver 2.0 © 2026 • Hecho con ❤️ para la comunidad</p>
 </footer>
 
 <script>
@@ -169,13 +171,24 @@ function toggleMenu() {
     document.getElementById("sideMenu").classList.toggle("open");
 }
 
-// === Registro del Service Worker para PWA ===
+function sharePage() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Papuserver 2.0',
+            text: 'Servidores de Terraria y Minecraft',
+            url: window.location.href
+        });
+    } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Enlace copiado al portapapeles');
+    }
+}
+
+// PWA
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
-        .then(() => console.log('PWA Service Worker registrado'))
-        .catch(err => console.log('Error al registrar SW:', err));
+    navigator.serviceWorker.register('sw.js');
 }
 </script>
 
 </body>
-        </html>
+</html>
